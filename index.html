@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html><head><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+body{margin:0;background:#070707;color:white;font-family:sans-serif;max-width:420px;margin:auto}
+.head{background:#D4AF37;color:black;padding:14px;display:flex;justify-content:space-between;font-weight:900}
+.card{background:#151515;border:1px solid #333;padding:15px;border-radius:12px;margin:12px}
+.bar{height:8px;background:#333;border-radius:4px;margin-top:10px}.fill{height:8px;background:#D4AF37;border-radius:4px}
+.btn{background:#D4AF37;color:black;padding:8px 16px;border-radius:8px;font-weight:800;border:none}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;background:#111;border-top:1px solid #D4AF37;display:flex;justify-content:space-around;padding:14px}
+.nav button{background:none;border:none;color:#666;font-weight:bold}.nav .on{color:#D4AF37}
+</style></head>
+<body>
+<div class="head"><span>A1 CASH</span><span id="coinTop">0 Coins</span></div>
+
+<div id="home">
+<div class="card"><b style="color:#E8C765">Daily Target • <span id="progText">0/150</span></b><div class="bar"><div id="fill" class="fill" style="width:0%"></div></div><p style="font-size:11px;color:#888">150 coins complete karo</p></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center"><div><b>📺 Watch Ad</b><br><small style="color:#aaa">30 sec = 70 coins</small></div><button class="btn" onclick="add(70)">+70</button></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center"><div><b>🎨 Color Match</b><br><small style="color:#aaa">2 match = 40 coins</small></div><button class="btn" onclick="add(40)">+40</button></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center"><div><b>⭐ Rate Images</b><br><small style="color:#aaa">5 rate = 40 coins</small></div><button class="btn" onclick="add(40)">+40</button></div>
+</div>
+
+<div id="withdraw" style="display:none">
+<div class="card" style="background:#D4AF37;color:black;text-align:center"><small>Wallet</small><h1 id="bal">0 Coins</h1><b id="rs">₹0</b></div>
+<div class="card" style="border:1px solid #D4AF37;display:flex;justify-content:space-between"> <div><b>1000 = ₹100</b><br><small>Fee ₹29</small></div><button class="btn">Withdraw</button></div>
+<div class="card" style="border:1px solid #D4AF37;display:flex;justify-content:space-between"> <div><b>2500 = ₹250</b><br><small>Fee ₹49</small></div><button class="btn">Withdraw</button></div>
+</div>
+
+<div id="profile" style="display:none"><div class="card"><h2 style="color:#E8C765">My Earnings</h2><h1 id="pBal">0 Coins = ₹0</h1><p>Refer Code: A1CASH1200</p></div></div>
+
+<div class="nav">
+<button id="bHome" class="on" onclick="show('home',this)">Home</button>
+<button onclick="show('withdraw',this)">Withdraw</button>
+<button onclick="show('profile',this)">Profile</button>
+</div>
+
+<script>
+let coins=0,prog=0;
+function add(n){if(prog+n<=150){coins+=n;prog+=n;document.getElementById('coinTop').innerText=coins+' Coins';document.getElementById('progText').innerText=prog+'/150';document.getElementById('fill').style.width=(prog/150*100)+'%';document.getElementById('bal').innerText=coins+' Coins';document.getElementById('rs').innerText='₹'+Math.floor(coins/10);document.getElementById('pBal').innerText=coins+' Coins = ₹'+Math.floor(coins/10)}}
+function show(id,btn){document.getElementById('home').style.display='none';document.getElementById('withdraw').style.display='none';document.getElementById('profile').style.display='none';document.getElementById(id).style.display='block';document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+</script>
+</body></html>
